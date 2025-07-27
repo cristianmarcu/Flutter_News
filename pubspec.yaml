@@ -1,0 +1,31 @@
+name: dart_task
+description: A Flutter news app with NewsAPI integration and favorites,
+  developed for Hopn Internship
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0' # Required Dart SDK version
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.0 # For making HTTP requests to NewsAPI
+  shared_preferences: ^2.2.2 # For storing favorite articles locally
+  cupertino_icons: ^1.0.2 # Icon set for iOS-style icons
+  url_launcher: ^6.3.0 # For launching article URLs in browser
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0 # Provides best practice rules for linting
+  flutter_launcher_icons: ^0.13.1 # Customizing app icons for iOS and Android
+
+flutter:
+  uses-material-design: true # Enables Material Design components
+
+flutter_icons:
+  android: true  # Generate app icon for Android
+  ios: true      # Generate app icon for iOS
+  image_path: "assets/icon/news.png" # Path to your custom app icon image
