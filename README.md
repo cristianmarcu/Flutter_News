@@ -40,7 +40,7 @@ Project is cleaned to include only Android/IOs files.
 
 # Possible Improvements
 
-Add in-aoo article details page.
+Add in-app article details page.
 Implement offline article caching.
 Add search for news articles.
 Support multiple news categories.
