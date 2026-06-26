@@ -1,4 +1,4 @@
-package com.example.dart_task
+package com.cristianmarcu.newsflow
 
 import io.flutter.embedding.android.FlutterActivity
 

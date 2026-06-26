@@ -1,12 +1,21 @@
-# Flutter News App
+# News Flow
 
 A Flutter mobile app that fetches news articles from NewsAPI, lets users browse the latest headlines, save favorite articles, and open full articles in the browser.
 
+## Screenshots
+
+|  |  |
+| --- | --- |
+| **iOS News**<br>![iOS News screen](docs/screenshots/01-ios-news.png) | **iOS Saved**<br>![iOS Saved screen](docs/screenshots/02-ios-saved.png) |
+| **Android News**<br>![Android News screen](docs/screenshots/03-android-news.png) | **Android Saved**<br>![Android Saved screen](docs/screenshots/04-android-saved.png) |
+
 ## Overview
 
-Flutter News App is a cross-platform mobile project built with Flutter and Dart. It demonstrates API integration, local favorites persistence, external browser navigation, and simple mobile UI structure.
+News Flow is a Flutter news app for Android and iOS. It demonstrates API integration, local favorites persistence, external browser navigation, and a clean mobile-first UI.
 
 The app is designed as a portfolio project to show practical Flutter development skills, including working with REST APIs, managing local state, storing user preferences, and handling mobile platform configuration.
+
+Package name: `flutter_news`
 
 ## Features
 
@@ -54,27 +63,39 @@ cd Flutter_News
 flutter pub get
 ```
 
-3. Add your own NewsAPI key locally.
+3. Run the app with your own NewsAPI key.
 
-Do not commit API keys to GitHub. Use your own local configuration method or replace the placeholder locally during development.
-
-Example:
-
-```dart
-const String newsApiKey = 'YOUR_NEWS_API_KEY';
-```
-
-4. Run the app:
+The app reads the key at build time with `String.fromEnvironment('NEWS_API_KEY')`. Do not edit source files with a real key, and do not commit API keys to GitHub.
 
 ```bash
-flutter clean
-flutter pub get
-flutter run
+flutter run --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+```
+
+Android emulator:
+
+```bash
+flutter run -d <android-device-id> --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+```
+
+iOS simulator:
+
+```bash
+flutter run -d <ios-simulator-id> --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+```
+
+Debug builds:
+
+```bash
+flutter build apk --debug --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+flutter build ios --debug --simulator --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
 ```
 
 ## Expected Behavior
 
 * The app loads news articles from NewsAPI.
+* If `NEWS_API_KEY` is missing or invalid, the app shows a clear error message.
+* Failed requests can be retried when retrying is useful.
+* An empty NewsAPI response shows an empty state.
 * Users can save articles as favorites.
 * The Favorites tab displays saved articles.
 * Favorite articles show a selected heart icon.
@@ -85,15 +106,30 @@ flutter run
 * `url_launcher` is used to open articles externally.
 * `shared_preferences` is used to persist favorite articles locally.
 * `flutter_launcher_icons` is used for the app icon.
+* NewsAPI requests pass the API key with the `X-Api-Key` HTTP header.
 * `AndroidManifest.xml` includes internet permission and URL-launching queries.
 * Async operations include mounted checks where needed.
-* Dart files include comments to explain key functionality for review.
 
 ## Security Note
 
 This project requires a NewsAPI key. API keys should not be committed to the repository or written directly in public documentation.
 
-If an API key was previously exposed publicly, it should be revoked and replaced with a new one.
+If an API key was previously exposed publicly, treat it as compromised, revoke it, and replace it with a new one.
+
+## Runtime Testing
+
+Use a real NewsAPI key for successful API tests, but never commit it.
+
+```bash
+flutter run -d <android-device-id> --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+flutter run -d <ios-simulator-id> --dart-define=NEWS_API_KEY=YOUR_NEWS_API_KEY
+```
+
+Also verify:
+
+* Missing key: `flutter run`
+* Invalid key: `flutter run --dart-define=NEWS_API_KEY=INVALID_KEY`
+* No internet or failed request: disable network access in the simulator/emulator and retry loading news
 
 ## Future Improvements
 
@@ -102,7 +138,6 @@ If an API key was previously exposed publicly, it should be revoked and replaced
 * Add category filters
 * Add offline article caching
 * Add loading skeletons
-* Improve error handling for failed API requests
 * Add unit tests for favorites logic
 * Add UI tests for article and favorites flows
 
@@ -110,9 +145,8 @@ If an API key was previously exposed publicly, it should be revoked and replaced
 
 This project demonstrates:
 
-* Flutter app structure
-* REST API integration
-* Local persistence
-* Browser navigation
-* Basic mobile UX patterns
-* Cross-platform mobile development
+* Runtime API key injection with `--dart-define=NEWS_API_KEY=...`
+* Android and iOS mobile support
+* Local favorites stored with `shared_preferences`
+* Loading, error, retry, and empty states
+* Clean, recruiter-friendly mobile UI

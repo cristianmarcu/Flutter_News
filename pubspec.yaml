@@ -1,6 +1,5 @@
-name: dart_task
-description: A Flutter news app with NewsAPI integration and favorites,
-  developed for Hopn Internship
+name: flutter_news
+description: A Flutter news portfolio demo with NewsAPI integration and local favorites.
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -20,12 +19,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0 # Provides best practice rules for linting
-  flutter_launcher_icons: ^0.13.1 # Customizing app icons for iOS and Android
+  flutter_launcher_icons: ^0.14.4 # Customizing app icons for iOS and Android
 
 flutter:
   uses-material-design: true # Enables Material Design components
 
-flutter_icons:
+flutter_launcher_icons:
   android: true  # Generate app icon for Android
   ios: true      # Generate app icon for iOS
   image_path: "assets/icon/news.png" # Path to your custom app icon image

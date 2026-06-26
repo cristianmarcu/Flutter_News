@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dart_task">
+    package="com.cristianmarcu.newsflow">
 
     <!-- Required for HTTP requests (NewsAPI) and URL launching -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="News App"
+        android:label="NewsFlow"
         android:icon="@mipmap/ic_launcher">
 
         <activity
